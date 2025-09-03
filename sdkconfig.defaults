@@ -1,0 +1,32 @@
+# Override some defaults so BT stack is enabled
+# in this example
+
+#
+# Partition Table
+# (It's possible to fit Blufi in 1MB app partition size with some other optimizations, but
+# default config is close to 1MB.)
+CONFIG_PARTITION_TABLE_SINGLE_APP_LARGE=y
+
+#
+# BT config
+#
+CONFIG_BT_ENABLED=y
+CONFIG_BT_GATTC_ENABLE=n
+CONFIG_BT_BLE_SMP_ENABLE=n
+CONFIG_BT_BLE_BLUFI_ENABLE=y
+CONFIG_MBEDTLS_HARDWARE_MPI=n
+CONFIG_MBEDTLS_DHM_C=y
+
+# Override some defaults so BT stack is enabled
+# by default in this example
+CONFIG_BT_GATTS_SEND_SERVICE_CHANGE_MANUAL=y
+CONFIG_BT_BTU_TASK_STACK_SIZE=4512
+CONFIG_PARTITION_TABLE_SINGLE_APP_LARGE=y
+
+# Override some defaults of ESP BLE Mesh
+CONFIG_BLE_MESH=y
+CONFIG_BLE_MESH_NODE=y
+CONFIG_BLE_MESH_PB_GATT=y
+CONFIG_BLE_MESH_TX_SEG_MSG_COUNT=10
+CONFIG_BLE_MESH_RX_SEG_MSG_COUNT=10
+

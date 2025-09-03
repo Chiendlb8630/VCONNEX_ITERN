@@ -1,0 +1,37 @@
+{
+  "C_Cpp.intelliSenseEngine": "default",
+  "idf.espIdfPathWin": "e:\\ESP-IDF\\v5.3.3\\esp-idf",
+  "idf.pythonInstallPath": "e:\\ESP-IDF\\tool_path\\tools\\idf-python\\3.11.2\\python.exe",
+  "idf.openOcdConfigs": [
+    "board/esp32-wrover-kit-3.3v.cfg"
+  ],
+  "idf.portWin": "COM14",
+  "idf.toolsPathWin": "e:\\ESP-IDF\\tool_path",
+  "idf.customExtraVars": {
+    "IDF_TARGET": "esp32"
+  },
+  "idf.flashType": "UART",
+  "files.associations": {
+    "freertos.h": "c",
+    "cstdint": "cpp",
+    "iic_sw.h": "c",
+    "ledc.h": "c",
+    "led_buzzer_sw.h": "c",
+    "mqtt_client.h": "c",
+    "led_strip.h": "c",
+    "ble_mesh_example_init.h": "c",
+    "esp_bt_main.h": "c",
+    "chrono": "c",
+    "variant": "c",
+    "stdio.h": "c",
+    "protocol_examples_common.h": "c",
+    "nvs_flash.h": "c",
+    "compare": "c",
+    "system_error": "c",
+    "esp_ble_mesh_common_api.h": "c",
+    "nvs.h": "c",
+    "app_time.h": "c",
+    "string.h": "c",
+    "app_ble_mesh.h": "c"
+  }
+}
