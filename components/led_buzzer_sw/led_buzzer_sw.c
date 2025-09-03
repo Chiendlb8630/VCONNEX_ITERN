@@ -202,9 +202,9 @@ void buzzer_init(void) {
 void set_duty_all_led(){
     for(int i = 0;i< 4;i++){
         if(led_states[i]){
-            led_set_color(led_strips[i], (color_info.rOn * duty)/100 , (color_info.gOn * duty) / 100, (color_info.bOn * duty) / 100);
+            led_set_color(led_strips[i], ((int)color_info.rOn * duty)/100 , ((int)color_info.gOn * duty) / 100, ((int)color_info.bOn * duty) / 100);
         } else {
-            led_set_color(led_strips[i], (color_info.rOff * duty) / 100, (color_info.gOff * duty) / 100, (color_info.bOff * duty) / 100);        }
+            led_set_color(led_strips[i], ((int)color_info.rOff * duty) / 100, ((int)color_info.gOff * duty) / 100, ((int)color_info.bOff * duty) / 100);        }
     }
 }
 
@@ -247,7 +247,7 @@ led_strip_handle_t led_init(int gpio){
 
 void led_set_color(led_strip_handle_t strip, uint8_t r, uint8_t g, uint8_t b) {
     if (led_enable) {
-        ESP_LOGI(TAG, "LED ON -> R=%d, G=%d, B=%d", r, g, b);
+        ESP_LOGI(TAG, "LED COLOR -> R=%d, G=%d, B=%d", r, g, b);
         ESP_ERROR_CHECK(led_strip_set_pixel(strip, 0, r, g, b));
         ESP_ERROR_CHECK(led_strip_refresh(strip));
     } else {
@@ -336,9 +336,9 @@ void load_state(void){
 void set_led(void){
     for(int i = 0;i <4 ;i++){
         if(led_states[i]){
-            led_set_color(led_strips[i], (color_info.rOn * duty)/100 , (color_info.gOn * duty) / 100, (color_info.bOn * duty) / 100);
+            led_set_color(led_strips[i], ((int)color_info.rOn * duty)/100 , ((int)color_info.gOn * duty) / 100, ((int)color_info.bOn * duty) / 100);
         } else {
-            led_set_color(led_strips[0], (color_info.rOff * duty)/100, (color_info.gOff * duty) / 100, (color_info.bOff * duty) / 100);
+            led_set_color(led_strips[i], ((int)color_info.rOff * duty)/100, ((int)color_info.gOff * duty) / 100, ((int)color_info.bOff * duty) / 100);
         }
     }
 }
@@ -359,11 +359,11 @@ void set_led_all_off(void){
 
 void switch_change_state(uint8_t idx, uint8_t onoff){
     if(onoff == ON){
-        led_set_color(led_strips[idx], (color_info.rOn * duty)/100 , (color_info.gOn * duty) / 100, (color_info.bOn * duty) / 100);
+        led_set_color(led_strips[idx], ((int)color_info.rOn * duty)/100 , ((int)color_info.gOn * duty) / 100, ((int)color_info.bOn * duty) / 100);
         relay_set_state(idx, ON);
     }
     else {
-        led_set_color(led_strips[idx], (color_info.rOff * duty) / 100, (color_info.gOff * duty) / 100, (color_info.bOff * duty) / 100);
+        led_set_color(led_strips[idx], ((int)color_info.rOff * duty) / 100, ((int)color_info.gOff * duty) / 100, ((int)color_info.bOff * duty) / 100);
         relay_set_state(idx, OFF);
     }
 }

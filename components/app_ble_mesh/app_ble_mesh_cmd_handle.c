@@ -179,9 +179,9 @@ void start_ota_handle(const uint8_t *info , size_t info_len){
         uint8_t id = info[index++];
         uint8_t len = info[index++];    
         if(index + len >info_len) break;
-        if(id == 0x03){
-            memcpy(ble_mesh_wifi.url, &info[index], len);
-            ble_mesh_wifi.url[len] = '\0';
+        if (id == 0x03) {
+            strncpy(ble_mesh_wifi.url, (char *)&info[index], len);
+            ble_mesh_wifi.url[len] = '\0';   
             ESP_LOGI(TAG, "OTA URL is : %s", ble_mesh_wifi.url);
         }
         else if(id == 0x04 ){
@@ -191,7 +191,7 @@ void start_ota_handle(const uint8_t *info , size_t info_len){
         }
         index += len;
     }
-    handle_ota_data_mesh(ble_mesh_wifi.url);
+    handle_ota_data_mesh((const char *)ble_mesh_wifi.url);
     xEventGroupSetBits(deinit_event_group, EVENT_DEINIT_BLE);
     ota_IsRunning = true;
 }
@@ -423,14 +423,14 @@ void cmd_extra_set_sw_type(uint8_t* cmd){
 
 void cmd_set_color_on_handle(uint8_t* cmd){
     color_info.rOn = cmd[3];
-    color_info.bOn = cmd[4]; 
-    color_info.gOn = cmd[5];
+    color_info.gOn = cmd[4]; 
+    color_info.bOn = cmd[5];
     set_duty_all_led();
 }    
 
 void cmd_set_color_off_handle(uint8_t* cmd){
     color_info.rOff = cmd[3];
-    color_info.bOff = cmd[4]; 
-    color_info.gOff = cmd[5];
+    color_info.gOff = cmd[4]; 
+    color_info.bOff = cmd[5];
     set_duty_all_led();
 }

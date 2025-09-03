@@ -388,7 +388,10 @@ static void ble_mesh_custom_model_cb(esp_ble_mesh_model_cb_event_t event, esp_bl
             case CMD_EXCONFIG_LED_ENB: 
                 uint8_t led_enb_byte = param->model_operation.msg[2];
                 ex_info.rgbon = led_enb_byte;
-                if(led_enb_byte) led_enable = 1;
+                if(led_enb_byte) {
+                    led_enable = 1;
+                    set_led();
+                }
                 else {
                     led_enable = 0;
                     set_led_all_off();
@@ -727,11 +730,12 @@ void res_ok_vendor(uint16_t add, uint32_t opcode){
 
 
 void ble_stack_deinit(void) {
-    ESP_LOGI("Ble_erase","------------------------------------------------Start deiniting ble stack---------------------------------------------------");
+    ESP_LOGI("Ble_erase","Deiniting ble stack");
     esp_err_t err;
     esp_ble_mesh_deinit_param_t deinit_param = {
     .erase_flash = true,  
     };
+    
     err = esp_ble_mesh_deinit(&deinit_param);
     if (err != ESP_OK) {
         ESP_LOGE("APP", "Failed to de-initialize BLE Mesh: %s", esp_err_to_name(err));

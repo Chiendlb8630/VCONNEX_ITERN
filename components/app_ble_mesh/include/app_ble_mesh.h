@@ -106,8 +106,8 @@ typedef struct {
 typedef struct {
     char ssid[33];      
     char password[65]; 
-    char url[65];
-    char firm[6]; 
+    char url[128];
+    char firm[10]; 
     bool valid;         
 } wifi_ble_mesh_ota;
 extern wifi_ble_mesh_ota ble_mesh_wifi;
