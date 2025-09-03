@@ -22,7 +22,11 @@ bool ota_IsRunning = false;
 
 char *build_ota_res(int error_code);
 void handle_ota_data(cJSON *value);
+<<<<<<< HEAD
 void handle_ota_data_mesh(const char *mesh_url);
+=======
+void handle_ota_data_mesh(char *mesh_url);
+>>>>>>> b672db7 (first commit)
 
 esp_err_t _http_event_handler(esp_http_client_event_t *evt)
 {
@@ -84,9 +88,15 @@ void ota_task(void *pvParameter)
         char* msg = build_ota_res(50004);
         mqtt_publish_to_app(msg);
         free(msg);
+<<<<<<< HEAD
         esp_restart();
         ESP_LOGE(TAG, "Firmware upgrade failed");
     }
+=======
+        ESP_LOGE(TAG, "Firmware upgrade failed");
+    }
+    esp_restart();
+>>>>>>> b672db7 (first commit)
     while (1) {
         vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
@@ -109,13 +119,21 @@ void handle_ota_data(cJSON *value) {
     }
 }
 
+<<<<<<< HEAD
 void handle_ota_data_mesh(const char *mesh_url){
+=======
+void handle_ota_data_mesh(char *mesh_url){
+>>>>>>> b672db7 (first commit)
     if(OTA_URL){
         free(OTA_URL);
     }
     OTA_URL = strdup(mesh_url);
+<<<<<<< HEAD
     printf("Mesh url is : %s \n", mesh_url);
     ESP_LOGI("OTA_MESH_CMD", "Pass url value to OTA : %s\n", OTA_URL);
+=======
+    ESP_LOGI("OTA_MESH_CMD", "Pass url value to OTA");
+>>>>>>> b672db7 (first commit)
 }
 
 char *build_ota_res(int error_code)
@@ -125,6 +143,10 @@ char *build_ota_res(int error_code)
     cJSON_AddStringToObject(root, "name", "CmdStartOta");
     cJSON_AddNumberToObject(root, "timestamp", 123456789);
     cJSON_AddNumberToObject(root, "errorCode", error_code);
+<<<<<<< HEAD
+=======
+
+>>>>>>> b672db7 (first commit)
     char *json_str = cJSON_PrintUnformatted(root);
     if (!json_str) {
         cJSON_Delete(root);

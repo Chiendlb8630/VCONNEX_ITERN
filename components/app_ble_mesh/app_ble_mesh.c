@@ -37,6 +37,11 @@ uint8_t msg[250];
 uint8_t mesh_mode = 0;
 uint8_t msgPointer = 0;
 extraConf_info ex_info = {0};
+<<<<<<< HEAD
+=======
+// ex_info.buzzer_enb = 1;
+// ex_info.rgbon = 1;
+>>>>>>> b672db7 (first commit)
 
 EventGroupHandle_t deinit_event_group;
 mesh_info_t mesh_key;
@@ -208,7 +213,12 @@ static void prov_complete(uint16_t net_idx, uint16_t addr, uint8_t flags, uint32
     ESP_LOGI(TAG, "flags 0x%02x, iv_index 0x%08" PRIx32, flags, iv_index);
 }
 
+<<<<<<< HEAD
 static void ble_mesh_provisioning_cb(esp_ble_mesh_prov_cb_event_t event, esp_ble_mesh_prov_cb_param_t *param)
+=======
+static void ble_mesh_provisioning_cb(esp_ble_mesh_prov_cb_event_t event,
+                                             esp_ble_mesh_prov_cb_param_t *param)
+>>>>>>> b672db7 (first commit)
 {
     switch (event) {
     case ESP_BLE_MESH_PROV_REGISTER_COMP_EVT:
@@ -388,6 +398,7 @@ static void ble_mesh_custom_model_cb(esp_ble_mesh_model_cb_event_t event, esp_bl
             case CMD_EXCONFIG_LED_ENB: 
                 uint8_t led_enb_byte = param->model_operation.msg[2];
                 ex_info.rgbon = led_enb_byte;
+<<<<<<< HEAD
                 if(led_enb_byte) {
                     led_enable = 1;
                     set_led();
@@ -396,6 +407,10 @@ static void ble_mesh_custom_model_cb(esp_ble_mesh_model_cb_event_t event, esp_bl
                     led_enable = 0;
                     set_led_all_off();
                 }
+=======
+                if(led_enb_byte) led_enable = 1;
+                else led_enable = 0;
+>>>>>>> b672db7 (first commit)
                 build_extra_res_sucess_cod(param->model_operation.msg, param->model_operation.length, 0x00);
                 break;
             case CMD_EXCONFIG_SAVE_STATE : 
@@ -730,12 +745,19 @@ void res_ok_vendor(uint16_t add, uint32_t opcode){
 
 
 void ble_stack_deinit(void) {
+<<<<<<< HEAD
     ESP_LOGI("Ble_erase","Deiniting ble stack");
+=======
+    ESP_LOGI("Ble_erase","------------------------------------------------Start deiniting ble stack---------------------------------------------------");
+>>>>>>> b672db7 (first commit)
     esp_err_t err;
     esp_ble_mesh_deinit_param_t deinit_param = {
     .erase_flash = true,  
     };
+<<<<<<< HEAD
     
+=======
+>>>>>>> b672db7 (first commit)
     err = esp_ble_mesh_deinit(&deinit_param);
     if (err != ESP_OK) {
         ESP_LOGE("APP", "Failed to de-initialize BLE Mesh: %s", esp_err_to_name(err));

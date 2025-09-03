@@ -179,9 +179,15 @@ void start_ota_handle(const uint8_t *info , size_t info_len){
         uint8_t id = info[index++];
         uint8_t len = info[index++];    
         if(index + len >info_len) break;
+<<<<<<< HEAD
         if (id == 0x03) {
             strncpy(ble_mesh_wifi.url, (char *)&info[index], len);
             ble_mesh_wifi.url[len] = '\0';   
+=======
+        if(id == 0x03){
+            memcpy(ble_mesh_wifi.url, &info[index], len);
+            ble_mesh_wifi.url[len] = '\0';
+>>>>>>> b672db7 (first commit)
             ESP_LOGI(TAG, "OTA URL is : %s", ble_mesh_wifi.url);
         }
         else if(id == 0x04 ){
@@ -191,7 +197,11 @@ void start_ota_handle(const uint8_t *info , size_t info_len){
         }
         index += len;
     }
+<<<<<<< HEAD
     handle_ota_data_mesh((const char *)ble_mesh_wifi.url);
+=======
+    handle_ota_data_mesh(ble_mesh_wifi.url);
+>>>>>>> b672db7 (first commit)
     xEventGroupSetBits(deinit_event_group, EVENT_DEINIT_BLE);
     ota_IsRunning = true;
 }
@@ -321,7 +331,11 @@ void build_extra_ctr_res(uint8_t cmd){
     printf("\n");
 }
 
+<<<<<<< HEAD
 void cmd_get_extra_night_mode_handle(uint8_t* cmd, size_t len){
+=======
+void cmd_get_extra_night_mode_handle(uint* cmd, size_t len){
+>>>>>>> b672db7 (first commit)
     uint8_t i = 0;
     add_value_type_msg(msg, CMD_EXCONFIG_NIGHT_ENB, U8, ex_info.night_enb);
     uint8_t buf[4];
@@ -346,10 +360,13 @@ void cmd_get_extra_night_mode_handle(uint8_t* cmd, size_t len){
     reset_pointer();
 }
 
+<<<<<<< HEAD
 void cmd_get_extra_countdown_handle(uint8_t* cmd, size_t len){
 
 }
 
+=======
+>>>>>>> b672db7 (first commit)
 void cmd_get_extra_config_handle(uint8_t* cmd, size_t len){
         uint8_t tag = cmd[0];
         if (tag >= CMD_EXCONFIG_SW1_CTRL_MODE && tag <= CMD_EXCONFIG_SW4_CTRL_MODE) {
@@ -366,7 +383,11 @@ void cmd_get_extra_config_handle(uint8_t* cmd, size_t len){
             cmd_get_extra_night_mode_handle(cmd, len);
         }
         else if(tag >= CMD_EXCONFIG_SW1_TYPE && tag <= CMD_EXCONFIG_SW4_TYPE){
+<<<<<<< HEAD
             cmd_get_extra_countdown_handle(cmd, len);
+=======
+            
+>>>>>>> b672db7 (first commit)
         }
 }
 
@@ -423,14 +444,24 @@ void cmd_extra_set_sw_type(uint8_t* cmd){
 
 void cmd_set_color_on_handle(uint8_t* cmd){
     color_info.rOn = cmd[3];
+<<<<<<< HEAD
     color_info.gOn = cmd[4]; 
     color_info.bOn = cmd[5];
+=======
+    color_info.bOn = cmd[4]; 
+    color_info.gOn = cmd[5];
+>>>>>>> b672db7 (first commit)
     set_duty_all_led();
 }    
 
 void cmd_set_color_off_handle(uint8_t* cmd){
     color_info.rOff = cmd[3];
+<<<<<<< HEAD
     color_info.gOff = cmd[4]; 
     color_info.bOff = cmd[5];
+=======
+    color_info.bOff = cmd[4]; 
+    color_info.gOff = cmd[5];
+>>>>>>> b672db7 (first commit)
     set_duty_all_led();
 }

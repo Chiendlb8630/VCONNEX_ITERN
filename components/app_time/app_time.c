@@ -178,7 +178,10 @@ void app_time_countdown_handle(uint8_t sw_idx, uint32_t cnt_timestamp) {
 
 void cmd_night_mode_handle(uint8_t enb, uint32_t begin, uint32_t end) {
     if (enb == 0) {
+<<<<<<< HEAD
         night_timer_callback(NULL);
+=======
+>>>>>>> b672db7 (first commit)
         printf("Night mode disabled\n");
         return;
     }
